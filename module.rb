@@ -1,20 +1,29 @@
 module Dance
-def twirl
-  "Trwirling"
-end
+  module Classmethods
+    def metadata
+      "This class has methods of a dancer"
+    end
+  end
+  module Instancemethods
 
-def jump
-  "Jumping"
-end
+    def twirl
+      "Trwirling"
+    end
 
-def swim
-  "Swimming"
-end
+    def jump
+      "Jumping"
+    end
+
+    def swim
+      "Swimming"
+    end
+  end
 
 end
 
 class Kid
-  include Dance # Let's us use the methods in Dance module
+  extend Dance::Classmethods
+  include Dance::Instancemethods # Let's us use the methods in Dance module
   attr_accessor :name
   def initialize name
     @name = name
@@ -23,8 +32,10 @@ class Kid
 end
 
 class Dancer
-  include Dance
+  include Dance::Instancemethods
+  extend Dance::Classmethods
 end
 
 angelina = Kid.new "Angelina"
 puts "#{angelina.name} says: #{angelina.twirl}"
+puts Kid.metadata
