@@ -16,6 +16,15 @@ class Animal
     @@all
   end
 
+  #Method builder
+  #called by Class.method_name to call the definer
+  #and them intsance.method_name
+  def self.method_builder method_name
+    define_method(method_name){
+    "Hello"
+  }
+  end
+
 end
 
 cat = {
@@ -28,3 +37,4 @@ c1 = Animal.new cat
 puts c1.breed
 puts c1.name
 puts c1.age
+puts c1.hi
