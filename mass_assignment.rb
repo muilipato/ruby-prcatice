@@ -29,3 +29,22 @@ end
 
 user1 = User.new twitter_user
 puts user1.bio
+
+
+require 'pry'
+class Person
+  def initialize attributes
+    attributes.each_key do |key, value|
+      self.class.attr_accessor key
+      self.send("#{key}=",attributes[key])
+    end
+  end
+
+end
+
+bob_attr = {name: "Bob", hair_color: "red",height: "5ft 4 in"}
+bob = Person.new bob_attr
+mercy_attr = {name: 'mercy', height:"6ft-4", eye_color:"blue"}
+mercy = Person.new mercy_attr
+
+binding.pry
