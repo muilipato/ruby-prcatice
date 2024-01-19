@@ -2,9 +2,14 @@ class Animal
   attr_accessor :name, :age, :breed
    @@all = []
   def initialize args
-    @name = args[:name]
-    @age = args[:age]
-    @breed =args[:breed]
+    #Using a method self.send to pass the values
+    args.each_key do |key, value|
+      self.send("#{key}=",args[key]) #This sends a :name= value to self
+    end
+
+   # @name = args[:name]
+     #@age = args[:age]
+    #@breed =args[:breed]
     @@all << self
   end
   def self.all
